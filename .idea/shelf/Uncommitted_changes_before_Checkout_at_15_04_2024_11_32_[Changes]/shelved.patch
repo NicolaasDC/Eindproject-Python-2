@@ -1,0 +1,19 @@
+Index: Eindproject Python 2.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import requests\r\nimport pandas as pd\r\n\r\nURL = 'https://api.open-meteo.com/v1/forecast?latitude=51.05&longitude=3.7167&hourly=temperature_2m,precipitation_probability,precipitation&timezone=Europe%2FBerlin'\r\n\r\nresponse = requests.get(URL)\r\njson_data = response.json()\r\n#print(json_data)\r\ntime = json_data.get('hourly')['time']\r\n\r\ntemp = json_data.get('hourly')['temperature_2m']\r\n\r\nprecipitation = json_data.get('hourly')['precipitation']\r\n\r\nrows = []\r\nfor n in range(0, len(time)):\r\n    row = {}\r\n    row['time'] = time[n]\r\n    row['temp'] = temp[n]\r\n    row['precipitation'] = precipitation[n]\r\n    rows.append(row)\r\n\r\n\r\ndf = pd.DataFrame(rows)\r\nprint(df)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Eindproject Python 2.py b/Eindproject Python 2.py
+--- a/Eindproject Python 2.py	
++++ b/Eindproject Python 2.py	
+@@ -1,6 +1,8 @@
+ import requests
+ import pandas as pd
+ 
++
++
+ URL = 'https://api.open-meteo.com/v1/forecast?latitude=51.05&longitude=3.7167&hourly=temperature_2m,precipitation_probability,precipitation&timezone=Europe%2FBerlin'
+ 
+ response = requests.get(URL)
