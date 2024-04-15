@@ -40,7 +40,7 @@ temp_mean = json_data_hist.get('daily')['temperature_2m_mean']
 precipitation_hist = json_data_hist.get('daily')['precipitation_sum']
 
 rows = []
-for n in range(0, len(time)):
+for n in range(0, len(time_hist)):
     row = {}
     row['time'] = time_hist[n]
     row['temp_max'] = temp_max[n]
