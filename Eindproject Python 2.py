@@ -38,7 +38,7 @@ for n in range(0, 7):
     dates_next_week.append(time[24*n][0:10])
     mean_temp_daily.append(round(sum(temp[24*n:24*(n+1)])/24, 1))
     max_temp_daily.append(max(temp[24*n:24*(n+1)]))
-    daily_precipitation.append(sum(temp[24*n:24*(n+1)]))
+    daily_precipitation.append(round(sum(precipitation[24*n:24*(n+1)]), 1))
 
 
 
