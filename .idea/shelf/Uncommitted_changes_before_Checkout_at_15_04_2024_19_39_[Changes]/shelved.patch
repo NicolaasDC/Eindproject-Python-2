@@ -1,0 +1,37 @@
+Index: Eindproject Python 2.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import requests\r\nimport pandas as pd\r\nimport matplotlib.pyplot as plt\r\n\r\nprint('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')\r\nprint('Geef de x-coördinaat in:')\r\n# x = float(input())\r\nx= 3.72\r\nprint('Geef de y-coördnaat in:')\r\n# y = float(input())\r\ny = 51.05\r\n\r\nURL = f'https://api.open-meteo.com/v1/forecast?latitude={y}&longitude={x}&hourly=temperature_2m,precipitation_probability,precipitation&timezone=Europe%2FBerlin'\r\n\r\nresponse = requests.get(URL)\r\njson_data = response.json()\r\ntime = json_data.get('hourly')['time']\r\n\r\ntemp = json_data.get('hourly')['temperature_2m']\r\n\r\nprecipitation = json_data.get('hourly')['precipitation']\r\n\r\nrows = []\r\nfor n in range(0, len(time)):\r\n    row = {}\r\n    row['time'] = time[n]\r\n    row['temp'] = temp[n]\r\n    row['precipitation'] = precipitation[n]\r\n    rows.append(row)\r\n\r\ndf = pd.DataFrame(rows)\r\n\r\ndates_next_week = []\r\nmean_temp_daily = []\r\nmax_temp_daily = []\r\ndaily_precipitation = []\r\nfor n in range(0, 7):\r\n    dates_next_week.append(time[24*n][0:10])\r\n    mean_temp_daily.append(round(sum(temp[24*n:24*(n+1)])/24, 1))\r\n    max_temp_daily.append(max(temp[24*n:24*(n+1)]))\r\n    daily_precipitation.append(round(sum(precipitation[24*n:24*(n+1)]), 1))\r\n\r\n\r\n\r\nprint(dates_next_week)\r\nprint(mean_temp_daily)\r\nprint(max_temp_daily)\r\nprint(daily_precipitation)\r\n\r\nx_axis = df['time']\r\ny_axis = df['temp']\r\n\r\nplt.plot(x_axis, y_axis)\r\n\r\n# Create a scatter plot (bubble chart)\r\nplt.scatter(x_axis, y_axis)\r\n\r\n# Customize the plot\r\nplt.xlabel('Time')\r\nplt.ylabel('Temperature')\r\nplt.title('Temperature next week')\r\n\r\nplt.show()\r\n\r\nURL_hist = f'https://archive-api.open-meteo.com/v1/archive?latitude={y}&longitude={x}6&start_date=2000-01-01&end_date=2024-04-12&daily=temperature_2m_max,temperature_2m_mean,precipitation_sum&timezone=Europe%2FBerlin'\r\n\r\nresponse_hist = requests.get(URL_hist)\r\njson_data_hist = response_hist.json()\r\n\r\ntime_hist = json_data_hist.get('daily')['time']\r\ntemp_max = json_data_hist.get('daily')['temperature_2m_max']\r\ntemp_mean = json_data_hist.get('daily')['temperature_2m_mean']\r\nprecipitation_hist = json_data_hist.get('daily')['precipitation_sum']\r\n\r\nrows = []\r\nfor n in range(0, len(time_hist)):\r\n    row = {}\r\n    row['time'] = time_hist[n]\r\n    row['temp_max'] = temp_max[n]\r\n    row['temp_mean'] = temp_mean[n]\r\n    row['precipitation_hist'] = precipitation_hist[n]\r\n    rows.append(row)\r\n\r\ndf_hist = pd.DataFrame(rows)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Eindproject Python 2.py b/Eindproject Python 2.py
+--- a/Eindproject Python 2.py	(revision 5e070df719c10c57ad4fc252b6bccc8f150a3ad6)
++++ b/Eindproject Python 2.py	(date 1713202627669)
+@@ -5,7 +5,7 @@
+ print('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')
+ print('Geef de x-coördinaat in:')
+ # x = float(input())
+-x= 3.72
++x = 3.72
+ print('Geef de y-coördnaat in:')
+ # y = float(input())
+ y = 51.05
+@@ -35,13 +35,11 @@
+ max_temp_daily = []
+ daily_precipitation = []
+ for n in range(0, 7):
+-    dates_next_week.append(time[24*n][0:10])
+-    mean_temp_daily.append(round(sum(temp[24*n:24*(n+1)])/24, 1))
+-    max_temp_daily.append(max(temp[24*n:24*(n+1)]))
+-    daily_precipitation.append(round(sum(precipitation[24*n:24*(n+1)]), 1))
++    dates_next_week.append(time[24 * n][0:10])
++    mean_temp_daily.append(round(sum(temp[24 * n:24 * (n + 1)]) / 24, 1))
++    max_temp_daily.append(max(temp[24 * n:24 * (n + 1)]))
++    daily_precipitation.append(round(sum(precipitation[24 * n:24 * (n + 1)]), 1))
+ 
+-
+-
+ print(dates_next_week)
+ print(mean_temp_daily)
+ print(max_temp_daily)

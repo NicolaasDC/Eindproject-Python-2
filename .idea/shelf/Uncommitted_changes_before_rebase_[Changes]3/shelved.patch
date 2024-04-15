@@ -1,0 +1,83 @@
+Index: Eindproject Python 2.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import requests\r\nimport pandas as pd\r\nimport matplotlib.pyplot as plt\r\n\r\nprint('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')\r\nprint('Geef de x-coördinaat in:')\r\nx = float(input())\r\nprint('Geef de y-coördnaat in:')\r\ny = float(input())\r\n\r\nURL = f'https://api.open-meteo.com/v1/forecast?latitude={y}&longitude={x}&hourly=temperature_2m,precipitation_probability,precipitation&timezone=Europe%2FBerlin'\r\n\r\nresponse = requests.get(URL)\r\njson_data = response.json()\r\ntime = json_data.get('hourly')['time']\r\n\r\ntemp = json_data.get('hourly')['temperature_2m']\r\n\r\nprecipitation = json_data.get('hourly')['precipitation']\r\n\r\nrows = []\r\nfor n in range(0, len(time)):\r\n    row = {}\r\n    row['time'] = time[n]\r\n    row['temp'] = temp[n]\r\n    row['precipitation'] = precipitation[n]\r\n    rows.append(row)\r\n\r\n\r\ndf = pd.DataFrame(rows)\r\nprint(df)\r\n\r\nx_axis = df['time']\r\ny_axis = df['temp']\r\n\r\nplt.plot(x_axis, y_axis)\r\n\r\n# Create a scatter plot (bubble chart)\r\nplt.scatter(x_axis, y_axis)\r\n\r\n# Customize the plot\r\nplt.xlabel('Time')\r\nplt.ylabel('Temperature')\r\nplt.title('Weather next week')\r\n\r\nplt.show()\r\n\r\nURL_hist = f'https://archive-api.open-meteo.com/v1/archive?latitude={y}&longitude={x}6&start_date=2000-01-01&end_date=2024-04-12&daily=temperature_2m_max,temperature_2m_mean,precipitation_sum&timezone=Europe%2FBerlin'\r\n\r\nresponse_hist = requests.get(URL_hist)\r\njson_data_hist = response_hist.json()\r\n\r\ntime_hist = json_data_hist.get('daily')['time']\r\ntemp_max = json_data_hist.get('daily')['temperature_2m_max']\r\ntemp_mean = json_data_hist.get('daily')['temperature_2m_mean']\r\nprecipitation_hist = json_data_hist.get('daily')['precipitation_sum']\r\n\r\nrows = []\r\nfor n in range(0, len(time_hist)):\r\n    row = {}\r\n    row['time'] = time_hist[n]\r\n    row['temp_max'] = temp_max[n]\r\n    row['temp_mean'] = temp_mean[n]\r\n    row['precipitation_hist'] = precipitation_hist[n]\r\n    rows.append(row)\r\n\r\ndf_hist = pd.DataFrame(rows)\r\nprint(df_hist)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Eindproject Python 2.py b/Eindproject Python 2.py
+--- a/Eindproject Python 2.py	
++++ b/Eindproject Python 2.py	
+@@ -4,9 +4,11 @@
+ 
+ print('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')
+ print('Geef de x-coördinaat in:')
+-x = float(input())
++# x = float(input())
++x= 3.72
+ print('Geef de y-coördnaat in:')
+-y = float(input())
++# y = float(input())
++y = 51.05
+ 
+ URL = f'https://api.open-meteo.com/v1/forecast?latitude={y}&longitude={x}&hourly=temperature_2m,precipitation_probability,precipitation&timezone=Europe%2FBerlin'
+ 
+@@ -26,9 +28,27 @@
+     row['precipitation'] = precipitation[n]
+     rows.append(row)
+ 
+-
+ df = pd.DataFrame(rows)
+-print(df)
++
++dates_next_week = []
++mean_temp_daily = []
++max_temp_daily = []
++daily_precipitation = []
++for n in range(0, 7):
++    dates_next_week.append(time[24*n][0:10])
++    mean_temp_daily.append(round(sum(temp[24*n:24*(n+1)])/24, 1))
++    max_temp_daily.append(max(temp[24*n:24*(n+1)]))
++    daily_precipitation.append(round(sum(precipitation[24*n:24*(n+1)]), 1))
++
++data_next_week = {
++    'dates': dates_next_week,
++    'temp_mean': mean_temp_daily,
++    'temp_max': max_temp_daily,
++    'precipitation': daily_precipitation
++}
++df_next_week = pd.DataFrame(data_next_week)
++
++print(df_next_week)
+ 
+ x_axis = df['time']
+ y_axis = df['temp']
+@@ -41,7 +61,8 @@
+ # Customize the plot
+ plt.xlabel('Time')
+ plt.ylabel('Temperature')
+-plt.title('Weather next week')
++plt.title('Temperature next week')
++plt.xticks([12, 36, 60, 84, 108, 132, 156],['1', '2', '3', '4', '5', '6', '7'])
+ 
+ plt.show()
+ 
+@@ -59,10 +80,16 @@
+ for n in range(0, len(time_hist)):
+     row = {}
+     row['time'] = time_hist[n]
++    row['month_day'] = time_hist[n][5:10]
+     row['temp_max'] = temp_max[n]
+     row['temp_mean'] = temp_mean[n]
+     row['precipitation_hist'] = precipitation_hist[n]
+     rows.append(row)
+ 
+ df_hist = pd.DataFrame(rows)
+-print(df_hist)
+\ No newline at end of file
++
++today = time[0][5:10]
++print(today)
++
++print(df_hist)
++

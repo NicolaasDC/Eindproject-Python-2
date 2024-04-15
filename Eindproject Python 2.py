@@ -41,11 +41,14 @@ for n in range(0, 7):
     daily_precipitation.append(round(sum(precipitation[24*n:24*(n+1)]), 1))
 
 
+data_next_week = {
+    'date': dates_next_week,
+    'mean_temp': mean_temp_daily,
+    'max_temp': max_temp_daily,
+    'precipitation': daily_precipitation
+}
+df_next_week = pd.DataFrame(data_next_week)
 
-print(dates_next_week)
-print(mean_temp_daily)
-print(max_temp_daily)
-print(daily_precipitation)
 
 x_axis = df['time']
 y_axis = df['temp']
@@ -76,9 +79,13 @@ rows = []
 for n in range(0, len(time_hist)):
     row = {}
     row['time'] = time_hist[n]
+    row['month_day'] = time_hist[n][5:10]
     row['temp_max'] = temp_max[n]
     row['temp_mean'] = temp_mean[n]
     row['precipitation_hist'] = precipitation_hist[n]
     rows.append(row)
 
 df_hist = pd.DataFrame(rows)
+today = time[0][5:10]
+print(today)
+
