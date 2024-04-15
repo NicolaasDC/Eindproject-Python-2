@@ -4,9 +4,11 @@ import matplotlib.pyplot as plt
 
 print('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')
 print('Geef de x-coördinaat in:')
-x = float(input())
+# x = float(input())
+x= 3.72
 print('Geef de y-coördnaat in:')
-y = float(input())
+# y = float(input())
+y = 51.05
 
 URL = f'https://api.open-meteo.com/v1/forecast?latitude={y}&longitude={x}&hourly=temperature_2m,precipitation_probability,precipitation&timezone=Europe%2FBerlin'
 
@@ -26,9 +28,24 @@ for n in range(0, len(time)):
     row['precipitation'] = precipitation[n]
     rows.append(row)
 
-
 df = pd.DataFrame(rows)
-print(df)
+
+dates_next_week = []
+mean_temp_daily = []
+max_temp_daily = []
+daily_precipitation = []
+for n in range(0, 7):
+    dates_next_week.append(time[24*n][0:10])
+    mean_temp_daily.append(round(sum(temp[24*n:24*(n+1)])/24, 1))
+    max_temp_daily.append(max(temp[24*n:24*(n+1)]))
+    daily_precipitation.append(sum(temp[24*n:24*(n+1)]))
+
+
+
+print(dates_next_week)
+print(mean_temp_daily)
+print(max_temp_daily)
+print(daily_precipitation)
 
 x_axis = df['time']
 y_axis = df['temp']
@@ -41,7 +58,7 @@ plt.scatter(x_axis, y_axis)
 # Customize the plot
 plt.xlabel('Time')
 plt.ylabel('Temperature')
-plt.title('Weather next week')
+plt.title('Temperature next week')
 
 plt.show()
 
@@ -65,4 +82,3 @@ for n in range(0, len(time_hist)):
     rows.append(row)
 
 df_hist = pd.DataFrame(rows)
-print(df_hist)
