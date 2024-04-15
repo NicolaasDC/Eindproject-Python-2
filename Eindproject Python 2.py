@@ -1,5 +1,7 @@
 import requests
 import pandas as pd
+import matplotlib.pyplot as plt
+
 print('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')
 print('Geef de x-coördinaat in:')
 x = float(input())
@@ -10,7 +12,6 @@ URL = f'https://api.open-meteo.com/v1/forecast?latitude={y}&longitude={x}&hourly
 
 response = requests.get(URL)
 json_data = response.json()
-#print(json_data)
 time = json_data.get('hourly')['time']
 
 temp = json_data.get('hourly')['temperature_2m']
@@ -28,6 +29,21 @@ for n in range(0, len(time)):
 
 df = pd.DataFrame(rows)
 print(df)
+
+x_axis = df['time']
+y_axis = df['temp']
+
+plt.plot(x_axis, y_axis)
+
+# Create a scatter plot (bubble chart)
+plt.scatter(x_axis, y_axis)
+
+# Customize the plot
+plt.xlabel('Time')
+plt.ylabel('Temperature')
+plt.title('Weather next week')
+
+plt.show()
 
 URL_hist = f'https://archive-api.open-meteo.com/v1/archive?latitude={y}&longitude={x}6&start_date=2000-01-01&end_date=2024-04-12&daily=temperature_2m_max,temperature_2m_mean,precipitation_sum&timezone=Europe%2FBerlin'
 
@@ -48,5 +64,5 @@ for n in range(0, len(time_hist)):
     row['precipitation_hist'] = precipitation_hist[n]
     rows.append(row)
 
-df = pd.DataFrame(rows)
-print(df)
+df_hist = pd.DataFrame(rows)
+print(df_hist)
