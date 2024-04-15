@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb352e62-0ccf-4322-98fc-d76448262468" name="Changes" comment="Gemiddelde temperatuur, max temperatuur en neerslag per dag berekend voor de komende week">
+    <list default="true" id="fb352e62-0ccf-4322-98fc-d76448262468" name="Changes" comment="data set voor gegevens van volgende week gemaakt,&#10;kolom bijgemaakt in historische gegevens met enkel maand en dag">
       <change beforePath="$PROJECT_DIR$/Eindproject Python 2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Eindproject Python 2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713202367763</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="data set voor gegevens van volgende week gemaakt,&#10;kolom bijgemaakt in historische gegevens met enkel maand en dag">
+      <option name="closed" value="true" />
+      <created>1713205710088</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1713205710088</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,7 +176,8 @@
     <MESSAGE value="zelf coördinaten ingeven en historische API gegevens toegevoegd" />
     <MESSAGE value="Grafiek toegevoegd voor weer van de komende week" />
     <MESSAGE value="Gemiddelde temperatuur, max temperatuur en neerslag per dag berekend voor de komende week" />
-    <option name="LAST_COMMIT_MESSAGE" value="Gemiddelde temperatuur, max temperatuur en neerslag per dag berekend voor de komende week" />
+    <MESSAGE value="data set voor gegevens van volgende week gemaakt,&#10;kolom bijgemaakt in historische gegevens met enkel maand en dag" />
+    <option name="LAST_COMMIT_MESSAGE" value="data set voor gegevens van volgende week gemaakt,&#10;kolom bijgemaakt in historische gegevens met enkel maand en dag" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

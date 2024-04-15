@@ -63,7 +63,7 @@ plt.xlabel('Time')
 plt.ylabel('Temperature')
 plt.title('Temperature next week')
 
-plt.show()
+#plt.show()
 
 URL_hist = f'https://archive-api.open-meteo.com/v1/archive?latitude={y}&longitude={x}6&start_date=2000-01-01&end_date=2024-04-12&daily=temperature_2m_max,temperature_2m_mean,precipitation_sum&timezone=Europe%2FBerlin'
 
@@ -87,5 +87,7 @@ for n in range(0, len(time_hist)):
 
 df_hist = pd.DataFrame(rows)
 today = time[0][5:10]
-print(today)
 
+result = df_hist[df_hist['month_day'] == today][['time', 'temp_max', 'temp_mean', 'precipitation_hist']]
+
+print(result)
