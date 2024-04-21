@@ -4,13 +4,13 @@ import requests
 import datetime
 from tabulate import tabulate
 
+# Input van de coördinaten en jaartal
+
 print('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')
 print('Geef de x-coördinaat in:')
-# x = float(input())
-x = 3.72
+x = float(input())
 print('Geef de y-coördnaat in:')
-# y = float(input())
-y = 51.05
+y = float(input())
 
 now = datetime.date.today()
 actual_year = now.year
@@ -28,15 +28,20 @@ while True:
   except ValueError:
     print(f"Input moet een integer zijn tussen 1940 en {actual_year}.")
 
+# Binnen halen van de API met de weergegevens van de komende week
+
 URL = f'https://api.open-meteo.com/v1/forecast?latitude={y}&longitude={x}&hourly=temperature_2m,precipitation_probability,precipitation&timezone=Europe%2FBerlin'
 
 response = requests.get(URL)
 json_data = response.json()
+
 time = json_data.get('hourly')['time']
 
 temp = json_data.get('hourly')['temperature_2m']
 
 precipitation = json_data.get('hourly')['precipitation']
+
+# API verwerken tot dataframe
 
 rows = []
 for n in range(0, len(time)):
@@ -47,6 +52,8 @@ for n in range(0, len(time)):
     rows.append(row)
 
 df = pd.DataFrame(rows)
+
+# API met historische gegevens binnen halen
 
 week_ago = datetime.date.today() - datetime.timedelta(days=7)
 
@@ -60,6 +67,8 @@ temp_max_hist = json_data_hist.get('daily')['temperature_2m_max']
 temp_mean_hist = json_data_hist.get('daily')['temperature_2m_mean']
 precipitation_hist = json_data_hist.get('daily')['precipitation_sum']
 
+# Historische gegevens verwerken
+
 rows = []
 for n in range(0, len(time_hist)):
     row = {}
@@ -72,10 +81,14 @@ for n in range(0, len(time_hist)):
 
 df_hist = pd.DataFrame(rows)
 
+# Tabel met de historische gegevens van datum van vandaag weergeven
+
 today = time[0][5:10]
 
 result = df_hist[df_hist['month_day'] == today][['time', 'temp_max', 'temp_mean', 'precipitation_hist']]
 print(tabulate(result, headers = 'keys', tablefmt = 'pretty'))
+
+# Dataframe maken met voorspelling van volgende week en de historische gegevens van die datums
 
 dates_next_week = []
 mean_temp_daily = []
@@ -109,8 +122,11 @@ data_next_week = {
     'precipitation_hist': hist_precipitation
 }
 df_next_week = pd.DataFrame(data_next_week)
+
+# Tabel met de gegevens van volgende week weergeven en historische gegevens van de dagen
 print(tabulate(df_next_week, headers = 'keys', tablefmt = 'pretty'))
 
+# Grafiek met de temperatuur voorspelling van komende week
 x_axis = df['time']
 y_axis = df['temp']
 
@@ -123,5 +139,5 @@ plt.scatter(x_axis, y_axis)
 plt.xlabel('Time')
 plt.ylabel('Temperature')
 plt.title('Temperature next week')
-
+plt.xticks([0, 1, 2, 3, 4, 5, 6, 7], dates_next_week)
 plt.show()
