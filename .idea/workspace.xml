@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb352e62-0ccf-4322-98fc-d76448262468" name="Changes" comment="Einddatum van de historische API aangepast naar de datum van 1 week geleden.">
+    <list default="true" id="fb352e62-0ccf-4322-98fc-d76448262468" name="Changes" comment="Nieuw dataframe met de voorspelde en de historische gegevens voor de komende week.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Eindproject Python 2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Eindproject Python 2.py" afterDir="false" />
     </list>
@@ -51,7 +51,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -182,7 +182,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713700865801</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Nieuw dataframe met de voorspelde en de historische gegevens voor de komende week.">
+      <option name="closed" value="true" />
+      <created>1713711368799</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1713711368799</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,6 +211,7 @@
     <MESSAGE value="Gemiddelde temperatuur, max temperatuur en neerslag per dag berekend voor de komende week" />
     <MESSAGE value="data set voor gegevens van volgende week gemaakt,&#10;kolom bijgemaakt in historische gegevens met enkel maand en dag" />
     <MESSAGE value="Einddatum van de historische API aangepast naar de datum van 1 week geleden." />
-    <option name="LAST_COMMIT_MESSAGE" value="Einddatum van de historische API aangepast naar de datum van 1 week geleden." />
+    <MESSAGE value="Nieuw dataframe met de voorspelde en de historische gegevens voor de komende week." />
+    <option name="LAST_COMMIT_MESSAGE" value="Nieuw dataframe met de voorspelde en de historische gegevens voor de komende week." />
   </component>
 </project>

@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import requests
-from datetime import timedelta, date
-from IPython.display import display
+import datetime
+from tabulate import tabulate
 
 print('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')
 print('Geef de x-coördinaat in:')
@@ -11,6 +11,22 @@ x= 3.72
 print('Geef de y-coördnaat in:')
 # y = float(input())
 y = 51.05
+
+now = datetime.date.today()
+actual_year = now.year
+
+while True:
+  try:
+    year = input(f'Vanaf welk jaar wil je de historische gegevens? (Vanaf 1940 tot {actual_year}):')
+    if year.isdigit():
+       year=int(year)
+    else:
+       raise ValueError()
+    if 1940 <= year <= actual_year:
+        break
+    raise ValueError()
+  except ValueError:
+    print(f"Input moet een integer zijn tussen 1940 en {actual_year}.")
 
 URL = f'https://api.open-meteo.com/v1/forecast?latitude={y}&longitude={x}&hourly=temperature_2m,precipitation_probability,precipitation&timezone=Europe%2FBerlin'
 
@@ -32,9 +48,6 @@ for n in range(0, len(time)):
 
 df = pd.DataFrame(rows)
 
-
-
-
 x_axis = df['time']
 y_axis = df['temp']
 
@@ -48,11 +61,11 @@ plt.xlabel('Time')
 plt.ylabel('Temperature')
 plt.title('Temperature next week')
 
-#plt.show()
+plt.show()
 
-week_ago = date.today() - timedelta(days=7)
+week_ago = datetime.date.today() - datetime.timedelta(days=7)
 
-URL_hist = f'https://archive-api.open-meteo.com/v1/archive?latitude={y}&longitude={x}6&start_date=2000-01-01&end_date={week_ago}&daily=temperature_2m_max,temperature_2m_mean,precipitation_sum&timezone=Europe%2FBerlin'
+URL_hist = f'https://archive-api.open-meteo.com/v1/archive?latitude={y}&longitude={x}6&start_date={year}-01-01&end_date={week_ago}&daily=temperature_2m_max,temperature_2m_mean,precipitation_sum&timezone=Europe%2FBerlin'
 
 response_hist = requests.get(URL_hist)
 json_data_hist = response_hist.json()
@@ -77,7 +90,7 @@ df_hist = pd.DataFrame(rows)
 today = time[0][5:10]
 
 result = df_hist[df_hist['month_day'] == today][['time', 'temp_max', 'temp_mean', 'precipitation_hist']]
-print(result)
+print(tabulate(result, headers = 'keys', tablefmt = 'pretty'))
 
 dates_next_week = []
 mean_temp_daily = []
@@ -111,4 +124,4 @@ data_next_week = {
     'precipitation_hist': hist_precipitation
 }
 df_next_week = pd.DataFrame(data_next_week)
-print(display(df_next_week))
+print(tabulate(df_next_week, headers = 'keys', tablefmt = 'pretty'))
