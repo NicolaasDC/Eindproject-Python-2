@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import requests
 from datetime import timedelta, date
+from IPython.display import display
 
 print('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')
 print('Geef de x-coördinaat in:')
@@ -31,24 +32,7 @@ for n in range(0, len(time)):
 
 df = pd.DataFrame(rows)
 
-dates_next_week = []
-mean_temp_daily = []
-max_temp_daily = []
-daily_precipitation = []
-for n in range(0, 7):
-    dates_next_week.append(time[24*n][0:10])
-    mean_temp_daily.append(round(sum(temp[24*n:24*(n+1)])/24, 1))
-    max_temp_daily.append(max(temp[24*n:24*(n+1)]))
-    daily_precipitation.append(round(sum(precipitation[24*n:24*(n+1)]), 1))
 
-
-data_next_week = {
-    'date': dates_next_week,
-    'mean_temp': mean_temp_daily,
-    'max_temp': max_temp_daily,
-    'precipitation': daily_precipitation
-}
-df_next_week = pd.DataFrame(data_next_week)
 
 
 x_axis = df['time']
@@ -67,7 +51,6 @@ plt.title('Temperature next week')
 #plt.show()
 
 week_ago = date.today() - timedelta(days=7)
-print(week_ago)
 
 URL_hist = f'https://archive-api.open-meteo.com/v1/archive?latitude={y}&longitude={x}6&start_date=2000-01-01&end_date={week_ago}&daily=temperature_2m_max,temperature_2m_mean,precipitation_sum&timezone=Europe%2FBerlin'
 
@@ -75,8 +58,8 @@ response_hist = requests.get(URL_hist)
 json_data_hist = response_hist.json()
 
 time_hist = json_data_hist.get('daily')['time']
-temp_max = json_data_hist.get('daily')['temperature_2m_max']
-temp_mean = json_data_hist.get('daily')['temperature_2m_mean']
+temp_max_hist = json_data_hist.get('daily')['temperature_2m_max']
+temp_mean_hist = json_data_hist.get('daily')['temperature_2m_mean']
 precipitation_hist = json_data_hist.get('daily')['precipitation_sum']
 
 rows = []
@@ -84,14 +67,48 @@ for n in range(0, len(time_hist)):
     row = {}
     row['time'] = time_hist[n]
     row['month_day'] = time_hist[n][5:10]
-    row['temp_max'] = temp_max[n]
-    row['temp_mean'] = temp_mean[n]
+    row['temp_max'] = temp_max_hist[n]
+    row['temp_mean'] = temp_mean_hist[n]
     row['precipitation_hist'] = precipitation_hist[n]
     rows.append(row)
 
 df_hist = pd.DataFrame(rows)
-date = time[0][5:10]
 
-result = df_hist[df_hist['month_day'] == date][['time', 'temp_max', 'temp_mean', 'precipitation_hist']]
+today = time[0][5:10]
+
+result = df_hist[df_hist['month_day'] == today][['time', 'temp_max', 'temp_mean', 'precipitation_hist']]
 print(result)
 
+dates_next_week = []
+mean_temp_daily = []
+hist_temp_mean = []
+max_temp_daily = []
+hist_max_temp = []
+daily_precipitation = []
+hist_precipitation = []
+
+for n in range(0, 7):
+    dates_next_week.append(time[24*n][0:10])
+    mean_temp_daily.append(round(sum(temp[24*n:24*(n+1)])/24, 1))
+    max_temp_daily.append(max(temp[24*n:24*(n+1)]))
+    daily_precipitation.append(round(sum(precipitation[24*n:24*(n+1)]), 1))
+
+
+for n in dates_next_week:
+    result = df_hist[df_hist['month_day'] == n[5:10]][['time', 'temp_max', 'temp_mean', 'precipitation_hist']]
+    hist_temp_mean.append(round(result['temp_mean'].sum() / result['temp_mean'].count(), 1))
+    hist_max_temp.append(round(result['temp_max'].sum() / result['temp_max'].count(), 1))
+    hist_precipitation.append(round(result['precipitation_hist'].sum() / result['precipitation_hist'].count(), 1))
+
+
+data_next_week = {
+    'date': dates_next_week,
+    'mean_temp_prediction': mean_temp_daily,
+    'mean_temp_hist': hist_temp_mean,
+    'max_temp_prediction': max_temp_daily,
+    'max_temp_hist': hist_max_temp,
+    'precipitation_prediction': daily_precipitation,
+    'precipitation_hist': hist_precipitation
+}
+df_next_week = pd.DataFrame(data_next_week)
+print(display(df_next_week))

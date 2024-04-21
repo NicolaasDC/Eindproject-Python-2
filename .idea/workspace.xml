@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb352e62-0ccf-4322-98fc-d76448262468" name="Changes" comment="data set voor gegevens van volgende week gemaakt,&#10;kolom bijgemaakt in historische gegevens met enkel maand en dag">
+    <list default="true" id="fb352e62-0ccf-4322-98fc-d76448262468" name="Changes" comment="Einddatum van de historische API aangepast naar de datum van 1 week geleden.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Eindproject Python 2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Eindproject Python 2.py" afterDir="false" />
     </list>
@@ -174,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713206994801</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Einddatum van de historische API aangepast naar de datum van 1 week geleden.">
+      <option name="closed" value="true" />
+      <created>1713700865801</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1713700865801</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -194,17 +202,7 @@
     <MESSAGE value="Grafiek toegevoegd voor weer van de komende week" />
     <MESSAGE value="Gemiddelde temperatuur, max temperatuur en neerslag per dag berekend voor de komende week" />
     <MESSAGE value="data set voor gegevens van volgende week gemaakt,&#10;kolom bijgemaakt in historische gegevens met enkel maand en dag" />
-    <option name="LAST_COMMIT_MESSAGE" value="data set voor gegevens van volgende week gemaakt,&#10;kolom bijgemaakt in historische gegevens met enkel maand en dag" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Eindproject Python 2.py</url>
-          <line>10</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Einddatum van de historische API aangepast naar de datum van 1 week geleden." />
+    <option name="LAST_COMMIT_MESSAGE" value="Einddatum van de historische API aangepast naar de datum van 1 week geleden." />
   </component>
 </project>
