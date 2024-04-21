@@ -7,7 +7,7 @@ from tabulate import tabulate
 print('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')
 print('Geef de x-coördinaat in:')
 # x = float(input())
-x= 3.72
+x = 3.72
 print('Geef de y-coördnaat in:')
 # y = float(input())
 y = 51.05
@@ -19,7 +19,7 @@ while True:
   try:
     year = input(f'Vanaf welk jaar wil je de historische gegevens? (Vanaf 1940 tot {actual_year}):')
     if year.isdigit():
-       year=int(year)
+       year = int(year)
     else:
        raise ValueError()
     if 1940 <= year <= actual_year:
@@ -47,21 +47,6 @@ for n in range(0, len(time)):
     rows.append(row)
 
 df = pd.DataFrame(rows)
-
-x_axis = df['time']
-y_axis = df['temp']
-
-plt.plot(x_axis, y_axis)
-
-# Create a scatter plot (bubble chart)
-plt.scatter(x_axis, y_axis)
-
-# Customize the plot
-plt.xlabel('Time')
-plt.ylabel('Temperature')
-plt.title('Temperature next week')
-
-plt.show()
 
 week_ago = datetime.date.today() - datetime.timedelta(days=7)
 
@@ -125,3 +110,18 @@ data_next_week = {
 }
 df_next_week = pd.DataFrame(data_next_week)
 print(tabulate(df_next_week, headers = 'keys', tablefmt = 'pretty'))
+
+x_axis = df['time']
+y_axis = df['temp']
+
+plt.plot(x_axis, y_axis)
+
+# Create a scatter plot (bubble chart)
+plt.scatter(x_axis, y_axis)
+
+# Customize the plot
+plt.xlabel('Time')
+plt.ylabel('Temperature')
+plt.title('Temperature next week')
+
+plt.show()

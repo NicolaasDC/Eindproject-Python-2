@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb352e62-0ccf-4322-98fc-d76448262468" name="Changes" comment="Nieuw dataframe met de voorspelde en de historische gegevens voor de komende week.">
+    <list default="true" id="fb352e62-0ccf-4322-98fc-d76448262468" name="Changes" comment="Jaartal zelf ingeven en foutafhandeling bij geen correct ingegeven jaartal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Eindproject Python 2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Eindproject Python 2.py" afterDir="false" />
     </list>
@@ -190,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713711368799</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Jaartal zelf ingeven en foutafhandeling bij geen correct ingegeven jaartal">
+      <option name="closed" value="true" />
+      <created>1713718606267</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1713718606267</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,6 +220,7 @@
     <MESSAGE value="data set voor gegevens van volgende week gemaakt,&#10;kolom bijgemaakt in historische gegevens met enkel maand en dag" />
     <MESSAGE value="Einddatum van de historische API aangepast naar de datum van 1 week geleden." />
     <MESSAGE value="Nieuw dataframe met de voorspelde en de historische gegevens voor de komende week." />
-    <option name="LAST_COMMIT_MESSAGE" value="Nieuw dataframe met de voorspelde en de historische gegevens voor de komende week." />
+    <MESSAGE value="Jaartal zelf ingeven en foutafhandeling bij geen correct ingegeven jaartal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Jaartal zelf ingeven en foutafhandeling bij geen correct ingegeven jaartal" />
   </component>
 </project>
