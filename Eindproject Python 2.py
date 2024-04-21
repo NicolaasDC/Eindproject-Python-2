@@ -1,6 +1,7 @@
-import requests
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
+import requests
+from datetime import timedelta, date
 
 print('Welke plaats wil je de weer gegevens? Vb. Gent (x: 3.72  en y: 51.05)')
 print('Geef de x-coördinaat in:')
@@ -65,7 +66,10 @@ plt.title('Temperature next week')
 
 #plt.show()
 
-URL_hist = f'https://archive-api.open-meteo.com/v1/archive?latitude={y}&longitude={x}6&start_date=2000-01-01&end_date=2024-04-12&daily=temperature_2m_max,temperature_2m_mean,precipitation_sum&timezone=Europe%2FBerlin'
+week_ago = date.today() - timedelta(days=7)
+print(week_ago)
+
+URL_hist = f'https://archive-api.open-meteo.com/v1/archive?latitude={y}&longitude={x}6&start_date=2000-01-01&end_date={week_ago}&daily=temperature_2m_max,temperature_2m_mean,precipitation_sum&timezone=Europe%2FBerlin'
 
 response_hist = requests.get(URL_hist)
 json_data_hist = response_hist.json()
@@ -86,8 +90,8 @@ for n in range(0, len(time_hist)):
     rows.append(row)
 
 df_hist = pd.DataFrame(rows)
-today = time[0][5:10]
+date = time[0][5:10]
 
-result = df_hist[df_hist['month_day'] == today][['time', 'temp_max', 'temp_mean', 'precipitation_hist']]
-
+result = df_hist[df_hist['month_day'] == date][['time', 'temp_max', 'temp_mean', 'precipitation_hist']]
 print(result)
+
