@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb352e62-0ccf-4322-98fc-d76448262468" name="Changes" comment="Jaartal zelf ingeven en foutafhandeling bij geen correct ingegeven jaartal">
+    <list default="true" id="fb352e62-0ccf-4322-98fc-d76448262468" name="Changes" comment="Code gedocumenteerd">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2024_11_52_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2024_11_52__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2024_12_11_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2024_12_11__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2024_12_20_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2024_12_20__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Eindproject Python 2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Eindproject Python 2.py" afterDir="false" />
     </list>
@@ -206,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713720624261</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Code gedocumenteerd">
+      <option name="closed" value="true" />
+      <created>1713722102749</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1713722102749</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -229,6 +243,7 @@
     <MESSAGE value="Einddatum van de historische API aangepast naar de datum van 1 week geleden." />
     <MESSAGE value="Nieuw dataframe met de voorspelde en de historische gegevens voor de komende week." />
     <MESSAGE value="Jaartal zelf ingeven en foutafhandeling bij geen correct ingegeven jaartal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Jaartal zelf ingeven en foutafhandeling bij geen correct ingegeven jaartal" />
+    <MESSAGE value="Code gedocumenteerd" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code gedocumenteerd" />
   </component>
 </project>

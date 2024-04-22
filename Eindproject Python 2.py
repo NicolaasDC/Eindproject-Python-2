@@ -86,6 +86,7 @@ df_hist = pd.DataFrame(rows)
 today = time[0][5:10]
 
 result = df_hist[df_hist['month_day'] == today][['time', 'temp_max', 'temp_mean', 'precipitation_hist']]
+print(f'Historische gegevens voor {time[0][5:10]}')
 print(tabulate(result, headers = 'keys', tablefmt = 'pretty'))
 
 # Dataframe maken met voorspelling van volgende week en de historische gegevens van die datums
@@ -124,9 +125,15 @@ data_next_week = {
 df_next_week = pd.DataFrame(data_next_week)
 
 # Tabel met de gegevens van volgende week weergeven en historische gegevens van de dagen
+print('De weervoorspelling van komende week vergeleken met de historische gegevens')
 print(tabulate(df_next_week, headers = 'keys', tablefmt = 'pretty'))
 
 # Grafiek met de temperatuur voorspelling van komende week
+
+dates_next_week_2 = []
+for n in range(0, 7):
+    dates_next_week_2.append(time[24*n][5:10])
+
 x_axis = df['time']
 y_axis = df['temp']
 
@@ -139,5 +146,5 @@ plt.scatter(x_axis, y_axis)
 plt.xlabel('Time')
 plt.ylabel('Temperature')
 plt.title('Temperature next week')
-plt.xticks([0, 1, 2, 3, 4, 5, 6, 7], dates_next_week)
+plt.xticks([12, 36, 60, 84, 106, 130, 156], dates_next_week_2)
 plt.show()
